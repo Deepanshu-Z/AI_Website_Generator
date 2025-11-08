@@ -78,6 +78,11 @@ export const Hero = () => {
     ];
 
     try {
+      if (!hasUnlimitedAccess && userDetails.credit! <= 0) {
+        toast.error("You have no credits left, Please upgrade your plan");
+        setIsLoading(false);
+        return;
+      }
       const result = await axios.post("/api/projects", {
         projectId,
         frameId,
