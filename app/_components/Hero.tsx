@@ -16,6 +16,7 @@ import { useContext, useState } from "react";
 import { toast } from "sonner";
 import { v4 as uuidv4 } from "uuid";
 import { UserDetailsContext } from "../context/UserDetailsContext";
+import { currentUser } from "@clerk/nextjs/server";
 
 const suggestion = [
   {
@@ -51,7 +52,7 @@ export const Hero = () => {
   const { userDetails, setUserDetails } = useContext(UserDetailsContext);
   const hasUnlimitedAccess = has && has({ plan: "unlimited" });
   const router = useRouter();
-
+  const user = currentUser();
   async function handleSubmit() {
     if (!hasUnlimitedAccess && userDetails.credit! <= 0) {
       toast.error("You have no credits left, Please upgrade your plan");
@@ -118,7 +119,11 @@ export const Hero = () => {
               </Button>
             ) : (
               <SignInButton mode="modal">
-                <Button disabled={!userInput} onClick={handleSubmit}>
+                <Button
+                  disabled={!userInput}
+                  //@ts-ignore
+                  onClick={user ? handleSubmit : undefined}
+                >
                   <ArrowUp />
                 </Button>
               </SignInButton>
