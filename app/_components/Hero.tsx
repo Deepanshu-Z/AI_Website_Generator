@@ -117,9 +117,11 @@ export const Hero = () => {
                 <Loader2Icon className="animate-spin" />
               </Button>
             ) : (
-              <Button disabled={!userInput} onClick={handleSubmit}>
-                <ArrowUp />
-              </Button>
+              <SignInButton mode="modal">
+                <Button disabled={!userInput} onClick={handleSubmit}>
+                  <ArrowUp />
+                </Button>
+              </SignInButton>
             )}
           </div>
           {/* </SignInButton> */}
