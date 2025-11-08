@@ -55,7 +55,7 @@ export const Hero = () => {
   const user = currentUser();
 
   async function handleSubmit() {
-    if (!hasUnlimitedAccess && userDetails.credit! <= 0) {
+    if (!hasUnlimitedAccess && userDetails.credits! <= 0) {
       toast.error("You have no credits left, Please upgrade your plan");
       setIsLoading(false);
       return;
@@ -78,7 +78,7 @@ export const Hero = () => {
     ];
 
     try {
-      if (!hasUnlimitedAccess && userDetails.credit! <= 0) {
+      if (!hasUnlimitedAccess && userDetails.credits! <= 0) {
         toast.error("You have no credits left, Please upgrade your plan");
         setIsLoading(false);
         return;
