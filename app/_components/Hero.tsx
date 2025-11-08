@@ -59,6 +59,7 @@ export const Hero = () => {
       toast.error("You have no credits left, Please upgrade your plan");
     }
     console.log(
+      "HI i am printing something",
       "hasUnlimitedAccess?:",
       hasUnlimitedAccess,
       "credits:",
