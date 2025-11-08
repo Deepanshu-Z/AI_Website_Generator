@@ -57,6 +57,8 @@ export const Hero = () => {
   async function handleSubmit() {
     if (!hasUnlimitedAccess && userDetails.credit! <= 0) {
       toast.error("You have no credits left, Please upgrade your plan");
+      setIsLoading(false);
+      return;
     }
     console.log(
       "HI i am printing something",
