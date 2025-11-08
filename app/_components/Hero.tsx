@@ -74,6 +74,7 @@ export const Hero = () => {
         messages,
         credits: userDetails?.credits,
       });
+      console.log("Credits are: ", userDetails.credits);
       toast.success("Project created successfully!");
       setUserDetails((prev: any) => ({
         ...prev,

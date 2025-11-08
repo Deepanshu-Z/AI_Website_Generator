@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
     const userResult = await db
       .update(usersTable)
       .set({
-        credits: credits - 1,
+        credits: Number(credits) - 1,
       })
       .where(eq(usersTable.email, user?.primaryEmailAddress?.emailAddress!));
   }
