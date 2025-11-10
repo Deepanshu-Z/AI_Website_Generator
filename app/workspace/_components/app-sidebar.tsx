@@ -38,10 +38,12 @@ export default function AppSidebar() {
   return (
     <Sidebar>
       <SidebarHeader>
-        <div className="flex items-center justify-between gap-2">
-          <img src="/logo.svg" height={35} width={35} alt="Logo" />
-          <h2 className="font-bold">AI Website Generator</h2>
-        </div>
+        <Link href={"/"}>
+          <div className="flex items-center justify-between gap-2">
+            <img src="/logo.svg" height={35} width={35} alt="Logo" />
+            <h2 className="font-bold">AI Website Generator</h2>
+          </div>
+        </Link>
         <Link href="/workspace">
           <Button className="w-full">+ Add new project</Button>
         </Link>
