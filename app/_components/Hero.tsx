@@ -48,7 +48,7 @@ const suggestion = [
 export const Hero = () => {
   const [userInput, setUserInput] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { user } = useUser(); // ✅ useUser instead of currentUser()
+  const { user } = useUser();
   const { has } = useAuth();
   const { userDetails, setUserDetails } = useContext(UserDetailsContext);
   const hasUnlimitedAccess = has && has({ plan: "unlimited" });
@@ -57,6 +57,13 @@ export const Hero = () => {
   async function handleSubmit() {
     if (!hasUnlimitedAccess && userDetails.credits! <= 0) {
       toast.error("You have no credits left, Please upgrade your plan");
+      console.log(
+        "HI i am printing something",
+        "hasUnlimitedAccess?:",
+        hasUnlimitedAccess,
+        "credits:",
+        userDetails.credits
+      );
       setIsLoading(false);
       return;
     }
