@@ -57,24 +57,9 @@ export const Hero = () => {
   async function handleSubmit() {
     if (!hasUnlimitedAccess && userDetails.credits! <= 0) {
       toast.error("You have no credits left, Please upgrade your plan");
-      console.log(
-        "HI i am printing something",
-        "hasUnlimitedAccess?:",
-        hasUnlimitedAccess,
-        "credits:",
-        userDetails.credits
-      );
       setIsLoading(false);
       return;
     }
-
-    console.log(
-      "HI i am printing something",
-      "hasUnlimitedAccess?:",
-      hasUnlimitedAccess,
-      "credits:",
-      userDetails.credits
-    );
 
     setIsLoading(true);
     const projectId = uuidv4();
