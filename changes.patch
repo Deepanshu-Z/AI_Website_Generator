@@ -1,0 +1,103 @@
+From 73dcf8172b84a6037c8bc7a8656822318409398a Mon Sep 17 00:00:00 2001
+From: Deepanshu-Z <deepanshupokhriyal07@gmail.com>
+Date: Tue, 11 Nov 2025 13:49:01 +0530
+Subject: [PATCH] 1) Public routes now available - /contact, /about 2) Removed
+ redunant header component on every page
+
+---
+ .gitignore           | 3 +++
+ app/about/page.tsx   | 1 -
+ app/contact/page.tsx | 1 -
+ app/layout.tsx       | 2 ++
+ app/page.tsx         | 1 -
+ middleware.ts        | 8 +++++++-
+ 6 files changed, 12 insertions(+), 4 deletions(-)
+
+diff --git a/.gitignore b/.gitignore
+index 5ef6a52..e2764f9 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -39,3 +39,6 @@ yarn-error.log*
+ # typescript
+ *.tsbuildinfo
+ next-env.d.ts
++
++# clerk configuration (can include secrets)
++/.clerk/
+diff --git a/app/about/page.tsx b/app/about/page.tsx
+index 5a43eca..8e7e5e4 100644
+--- a/app/about/page.tsx
++++ b/app/about/page.tsx
+@@ -6,7 +6,6 @@ import { Header } from "../_components/Header";
+ export default function About() {
+   return (
+     <div>
+-      <Header />
+       <div className="flex h-screen items-center justify-center">
+         <section className="text-center py-20">
+           <h1 className="text-5xl font-bold">About Me</h1>
+diff --git a/app/contact/page.tsx b/app/contact/page.tsx
+index c545518..e016368 100644
+--- a/app/contact/page.tsx
++++ b/app/contact/page.tsx
+@@ -4,7 +4,6 @@ import Form from "./_components/form";
+ export default function Contact() {
+   return (
+     <div>
+-      <Header />
+       <Form />
+     </div>
+   );
+diff --git a/app/layout.tsx b/app/layout.tsx
+index deca08e..79f9ec5 100644
+--- a/app/layout.tsx
++++ b/app/layout.tsx
+@@ -11,6 +11,7 @@ import {
+ } from "@clerk/nextjs";
+ import { Provider } from "./provider";
+ import { Toaster } from "@/components/ui/sonner";
++import { Header } from "./_components/Header";
+ 
+ const geistSans = Geist({
+   variable: "--font-geist-sans",
+@@ -39,6 +40,7 @@ export default function RootLayout({
+           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+         >
+           <Provider>
++            <Header />
+             {children}
+             <Toaster />
+           </Provider>
+diff --git a/app/page.tsx b/app/page.tsx
+index 76e4c3e..56736f3 100644
+--- a/app/page.tsx
++++ b/app/page.tsx
+@@ -4,7 +4,6 @@ import { Hero } from "./_components/Hero";
+ export default function Home() {
+   return (
+     <div>
+-      <Header />
+       <Hero />
+     </div>
+   );
+diff --git a/middleware.ts b/middleware.ts
+index 262f96f..c87ac73 100644
+--- a/middleware.ts
++++ b/middleware.ts
+@@ -1,6 +1,12 @@
+ import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+ 
+-const isPublicRoute = createRouteMatcher(["/sign-in(.*)", "/sign-up(.*)", "/"]);
++const isPublicRoute = createRouteMatcher([
++  "/sign-in(.*)",
++  "/sign-up(.*)",
++  "/",
++  "/contact",
++  "/about",
++]);
+ 
+ export default clerkMiddleware(async (auth, req) => {
+   if (!isPublicRoute(req)) {
+-- 
+2.47.1.windows.1
+

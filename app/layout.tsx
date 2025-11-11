@@ -11,6 +11,7 @@ import {
 } from "@clerk/nextjs";
 import { Provider } from "./provider";
 import { Toaster } from "@/components/ui/sonner";
+import { Header } from "./_components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,6 +40,7 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <Provider>
+            <Header />
             {children}
             <Toaster />
           </Provider>
