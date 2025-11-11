@@ -6,6 +6,7 @@ import { Header } from "../_components/Header";
 export default function About() {
   return (
     <div>
+      <Header />
       <div className="flex h-screen items-center justify-center">
         <section className="text-center py-20">
           <h1 className="text-5xl font-bold">About Me</h1>
