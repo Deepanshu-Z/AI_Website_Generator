@@ -24,7 +24,9 @@ export default function AppSidebar() {
   useEffect(() => {
     const getAllProjects = async () => {
       try {
-        const { data } = await axios.get("/api/getAllProjects");
+        const { data } = await axios.get(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api//getAllProjects`
+        );
         setProjectList(data);
       } catch (error) {
         console.error("Error fetching projects:", error);

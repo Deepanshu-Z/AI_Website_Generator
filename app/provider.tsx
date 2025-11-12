@@ -19,7 +19,9 @@ export const Provider = ({
   }, [user]);
 
   const createNewUser = async () => {
-    const result = await axios.post("/api/users");
+    const result = await axios.post(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/users`
+    );
     setUserDetails(result.data?.user);
   };
 

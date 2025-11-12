@@ -72,12 +72,15 @@ export const Hero = () => {
     ];
 
     try {
-      const result = await axios.post("/api/projects", {
-        projectId,
-        frameId,
-        messages,
-        credits: userDetails?.credits,
-      });
+      const result = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/projects`,
+        {
+          projectId,
+          frameId,
+          messages,
+          credits: userDetails?.credits,
+        }
+      );
 
       toast.success("Project created successfully!");
       setUserDetails((prev: any) => ({

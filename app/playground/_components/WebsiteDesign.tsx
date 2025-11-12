@@ -166,11 +166,14 @@ export const WebsiteDesign = ({ generatedCode, loading }: Props) => {
 
           const html = cloneDoc.outerHTML;
 
-          const result = await axios.put("/api/frame", {
-            designCode: html,
-            frameId,
-            projectId,
-          });
+          const result = await axios.put(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/api/frame`,
+            {
+              designCode: html,
+              frameId,
+              projectId,
+            }
+          );
 
           toast.success("CODE IS UPDATED.");
         }
