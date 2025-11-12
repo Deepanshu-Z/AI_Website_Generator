@@ -78,10 +78,7 @@ Example:
     try {
       setLoading(true);
       const result = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api//api/frame?frameId=" +
-          frameId +
-          "&projectId=" +
-          projectId`
+        "/api/frame?frameId=" + frameId + "&projectId=" + projectId
       );
       setFrameDetails(result.data);
 
@@ -179,13 +176,10 @@ Example:
 
   const updateMessage = async () => {
     try {
-      const result = await axios.put(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/chats`,
-        {
-          messages: messages,
-          frameId: frameId,
-        }
-      );
+      const result = await axios.put("/api/chats", {
+        messages: messages,
+        frameId: frameId,
+      });
     } catch (error) {
       console.log("Error updating messages: ", error);
     }
@@ -193,14 +187,11 @@ Example:
 
   const saveGeneratedCode = async (code: string) => {
     try {
-      const result = await axios.put(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/frame`,
-        {
-          designCode: code,
-          frameId,
-          projectId,
-        }
-      );
+      const result = await axios.put("/api/frame", {
+        designCode: code,
+        frameId,
+        projectId,
+      });
       toast.success("Website is ready!");
     } catch (error) {
       console.log("ERROR SAVING GENERATED CODE: ", error);
