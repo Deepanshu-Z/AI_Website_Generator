@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
     const response = await axios.post(
       "https://openrouter.ai/api/v1/chat/completions",
       {
-        model: "minimax/minimax-m2:free", // or any OpenRouter-supported model
+        model: "kwaipilot/kat-coder-pro:free", // or any OpenRouter-supported model
         messages,
         stream: true, // enable streaming
       },
