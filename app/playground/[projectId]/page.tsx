@@ -124,6 +124,14 @@ Example:
         }),
       });
 
+      if (result.status === 500) {
+        setMessages((prev: any) => [
+          ...prev,
+          { role: "assistant", content: "Please retry: TOO MUCH TRAFFIC" },
+        ]);
+        setLoading(false);
+        return;
+      }
       const reader = result.body?.getReader();
       const decoder = new TextDecoder();
 
