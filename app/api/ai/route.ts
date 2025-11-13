@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
     const response = await axios.post(
       "https://openrouter.ai/api/v1/chat/completions",
       {
-        model: "google/gemini-2.0-flash-exp:free", // or any OpenRouter-supported model
+        model: "openai/gpt-oss-120b", // or any OpenRouter-supported model
         messages,
         stream: true, // enable streaming
       },
